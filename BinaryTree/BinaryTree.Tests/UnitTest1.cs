@@ -1,15 +1,14 @@
-﻿namespace BinaryTree.Tests;
+﻿using System.Diagnostics;
+using BinaryTree.Lib;
 
-public class Tests
+namespace BinaryTree.Tests;
+
+
+public sealed class Tests
 {
-    [SetUp]
-    public void Setup()
+    public void TestEmpty()
     {
-    }
-
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
+        var tree = new Lib.BinaryTree();
+        Assert.AreEqual(tree.Head, null);
     }
 }

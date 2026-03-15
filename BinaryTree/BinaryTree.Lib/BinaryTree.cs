@@ -21,7 +21,30 @@ public class BinaryTree
         else
             _head.Add(v);
     }
-    
+
+    public bool Contains(int v)
+    {
+        if (_head == null)
+            return false;
+        return _head.Contains(v);
+    }
+
+    public int Sum()
+    {
+        if (_head == null)
+            return 0;
+        return _head.Sum();
+    }
+
+    public int Sum2()
+    {
+        return _head?.Sum2() ?? 0;
+    }
+
+    public new string ToString()
+    {
+        return _head?.ToString() ?? "";
+    }
 }
 
 internal class Node
@@ -54,4 +77,36 @@ internal class Node
                 _right.Add(v);
         }
     }
+
+    internal bool Contains(int v)
+    {
+        if (v == _value)
+            return true;
+        if (v < _value)
+            return _left?.Contains(v) ?? false;
+        return _right?.Contains(v) ?? false;
+    }
+    
+    public new string ToString()
+    {
+        string result = "";
+        if (_left != null)
+            result += _left.ToString() + ", ";
+        result += _value;
+        if (_right != null)
+            result += ", " + _right.ToString();
+        return result;
+    }
+
+    public int Sum()
+    {
+        int result = _value;
+        if (_left != null)
+            result += _left.Sum();
+        if (_right != null)
+            result += _right.Sum();
+        return result;
+    }
+    
+    public int Sum2() => _value + (_left?.Sum() ?? 0) + (_right?.Sum() ?? 0);
 }

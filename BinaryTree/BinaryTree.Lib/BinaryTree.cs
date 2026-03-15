@@ -2,7 +2,7 @@
 
 public class BinaryTree
 {
-    Node _head;
+    Node? _head = null;
     
     public BinaryTree()
     {
@@ -24,21 +24,30 @@ public class BinaryTree
 
     public bool Contains(int v)
     {
-        if (_head == null)
-            return false;
-        return _head.Contains(v);
+        return _head?.Contains(v) ?? false;
     }
 
     public int Sum()
     {
-        if (_head == null)
-            return 0;
-        return _head.Sum();
+        return _head?.Sum() ?? 0;
     }
 
     public int Sum2()
     {
         return _head?.Sum2() ?? 0;
+    }
+
+    // easy method but not very nice
+    public bool ContainsDuplicates()
+    {
+        string s = ToString();
+        if (s != "")
+        {
+            string[] integers = s.Split(", ");
+            if (integers.Length != new HashSet<string>(integers).Count)
+                return true;
+        }
+        return false;
     }
 
     public new string ToString()
@@ -49,9 +58,9 @@ public class BinaryTree
 
 internal class Node
 {
-    int _value;
-    Node _left;
-    Node _right;
+    private int _value;
+    private Node? _left;
+    private Node? _right;
 
     internal Node(int v)
     {
@@ -87,7 +96,7 @@ internal class Node
         return _right?.Contains(v) ?? false;
     }
     
-    public new string ToString()
+    internal new string ToString()
     {
         string result = "";
         if (_left != null)
@@ -98,7 +107,7 @@ internal class Node
         return result;
     }
 
-    public int Sum()
+    internal int Sum()
     {
         int result = _value;
         if (_left != null)
@@ -108,5 +117,5 @@ internal class Node
         return result;
     }
     
-    public int Sum2() => _value + (_left?.Sum() ?? 0) + (_right?.Sum() ?? 0);
+    internal int Sum2() => _value + (_left?.Sum() ?? 0) + (_right?.Sum() ?? 0);
 }

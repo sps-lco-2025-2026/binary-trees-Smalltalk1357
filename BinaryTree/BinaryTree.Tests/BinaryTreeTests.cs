@@ -55,4 +55,16 @@ public sealed class BinaryTreeTests
         tree.Add(2);
         Assert.AreEqual(3, tree.Sum2());
     }
+    
+    [TestMethod]
+    public void TestContainsDuplicates()
+    {
+        var tree = new BinaryTree(1);
+        tree.Add(2);
+        tree.Add(3);
+        Assert.IsFalse(tree.ContainsDuplicates());
+        
+        tree.Add(2);
+        Assert.IsTrue(tree.ContainsDuplicates());
+    }
 }
